@@ -19,7 +19,10 @@
   To allow users to create a quick and efficient way to generate README.md for their repositories.
   They input their data according to the questions and it will generate a README for them.
   ## [Installation](#table-of-contents)
-  First, you will need to install the README generator via my github. Second you need to install the inquirer from the npm. After you will run the index.js file and put in the command line: "node index.js". This will run the program and you will answer a series of questions that will generate the README at the end.
+  First, you will need to install the README generator via my github link below. Clone the repository onto your local storage. Second you need to create and package.json file("npm init" in  your terminal)and then install the inquirer from the npm ("npm install"). After you will run the index.js file and put in the command line: "node index.js". This will run the program and you will answer a series of questions that will generate the README at the end.
+  
+  https://github.com/ericn17/ubiquitous-train
+  
   ## [Usage](#table-of-contents)
   demo
   
