@@ -43,5 +43,7 @@
   Run "node index.js" in the terminal and answer the questions.
   ## [Questions](#table-of-contents)
   Please contact me using the following links:
+  
   [GitHub](https://github.com/ericn17)
+  
   [Email: 15enguyen4@gmail.com](mailto:15enguyen4@gmail.com)
