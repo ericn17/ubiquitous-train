@@ -116,15 +116,15 @@ const questions = [
   },
   {
     type: 'confirm',
-    name: 'allowContributers',
+    name: 'confirmContributers',
     message: 'Would you like to allow other developers to contribute on your project?',
     default: true
   },
   {
     type: 'input',
     name: 'contribute',
-    message: 'Pleas provide guidelines for contributing. (Required)',
-    when ({ allowContributers}) => {
+    message: 'Please provide guidelines for contributing. (Required)',
+    when: ({ allowContributers}) => {
       if (allowContributers) {
         return true;
       } else {
@@ -141,8 +141,8 @@ const questions = [
     }
   },
   {
-    type: 'input'
-    name: 'test'
+    type: 'input',
+    name: 'test',
     message: 'Please provide instructions on how to test the application. (Required)',
     validate: testInput => {
       if (testInput) {
@@ -156,22 +156,43 @@ const questions = [
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {
-  fs.writeFile(, fileName, (err) => {
-    if (err)
-      throw err;
-    console.log ('Success! Data transferred to the README.')
+const writeFile = fileContent => {
+  return new Promise((resolve, reject) => {
+    fs.writeFile('./build/sample-README.md', fileContent, err => {
+      if (err) {
+        reject(err);
+        return;
+      }
+
+      resolve({
+        ok: true,
+        message: 'File has been created!'
+      });
+    });
   });
 };
 
 // TODO: Create a function to initialize app
-function init() {
-  inquirer.prompt(questions)
-  .then(function (userInput) {
-    console.log(userInput)
-    writeToFile("README.md", generateMarkdown(userInput));
-  });
-};
+const init = () => {
+
+  return inquirer.prompt(questions)
+    .then(readmeData => {
+      return readmeData;
+    })
+}
 
 // Function call to initialize app
-init();
+init()
+  .then(readmeData => {
+    console.log(readmeData);
+    return generateMarkdown(readmeData);
+  })
+  .then(pageMD => {
+    return writeFile(pageMD);
+  })
+  .then(writeFileResponse => {
+    console.log(writeFileResponse.message);
+  })
+  .catch(err => {
+    console.log(err);
+  })
